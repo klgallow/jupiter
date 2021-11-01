@@ -29,6 +29,7 @@ import nxt.NxtException;
 import nxt.Transaction;
 import nxt.db.DbIterator;
 import nxt.util.Convert;
+import nxt.util.Logger;
 
 public final class GetBlockchainTransactions extends APIServlet.APIRequestHandler {
 
@@ -69,6 +70,8 @@ public final class GetBlockchainTransactions extends APIServlet.APIRequestHandle
 
         int firstIndex = ParameterParser.getFirstIndex(req);
         int lastIndex = ParameterParser.getLastIndex(req);
+        
+        Logger.logDebugMessage("accountId= " + accountId + " first index = " + firstIndex + " lastIndex = " + lastIndex);
 
         JSONArray transactions = new JSONArray();
         try (DbIterator<? extends Transaction> iterator = Nxt.getBlockchain().getTransactions(accountId, numberOfConfirmations,
@@ -76,12 +79,12 @@ public final class GetBlockchainTransactions extends APIServlet.APIRequestHandle
                 includeExpiredPrunable, executedOnly)) {
             while (iterator.hasNext()) {
                 Transaction transaction = iterator.next();
-                if (withMessage && transaction.getMessage() != null  && messageToFilter != null && !messageToFilter.isEmpty()) {
-                	String messageString = Convert.toString(transaction.getMessage().getMessage(), transaction.getMessage().isText());
-                	if (!messageString.contains(messageToFilter)) {
-                		break;
-                	}
-                }
+//                if (withMessage && transaction.getMessage() != null  && messageToFilter != null && !messageToFilter.isEmpty()) {
+//                	String messageString = Convert.toString(transaction.getMessage().getMessage(), transaction.getMessage().isText());
+//                	if (!messageString.contains(messageToFilter)) {
+//                		break;
+//                	}
+//                }
                
                 transactions.add(JSONData.transaction(transaction, includePhasingResult));
             }

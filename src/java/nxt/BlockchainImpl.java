@@ -34,6 +34,7 @@ import nxt.db.DbIterator;
 import nxt.db.DbUtils;
 import nxt.util.Convert;
 import nxt.util.Filter;
+import nxt.util.Logger;
 import nxt.util.ReadWriteUpdateLock;
 
 final class BlockchainImpl implements Blockchain {
@@ -474,6 +475,7 @@ final class BlockchainImpl implements Blockchain {
             con = Db.db.getConnection();
             PreparedStatement pstmt;
             int i = 0;
+            Logger.logDebugMessage("Query = " + buf.toString());
             pstmt = con.prepareStatement(buf.toString());
             pstmt.setLong(++i, accountId);
             pstmt.setLong(++i, accountId);
@@ -512,6 +514,7 @@ final class BlockchainImpl implements Blockchain {
                 pstmt.setInt(++i, prunableExpiration);
             }
             DbUtils.setLimits(++i, pstmt, from, to);
+            Logger.logDebugMessage("PreparedStatement = " +pstmt.toString());
             return getTransactions(con, pstmt);
         } catch (SQLException e) {
             DbUtils.close(con);
