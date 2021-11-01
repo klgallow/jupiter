@@ -77,7 +77,9 @@ public final class GetBlockchainTransactions extends APIServlet.APIRequestHandle
         try (DbIterator<? extends Transaction> iterator = Nxt.getBlockchain().getTransactions(accountId, numberOfConfirmations,
                 type, subtype, timestamp, withMessage, phasedOnly, nonPhasedOnly, firstIndex, lastIndex,
                 includeExpiredPrunable, executedOnly)) {
+        	int i = 0;
             while (iterator.hasNext()) {
+            	Logger.logDebugMessage("Processing tx " + i);
                 Transaction transaction = iterator.next();
 //                if (withMessage && transaction.getMessage() != null  && messageToFilter != null && !messageToFilter.isEmpty()) {
 //                	String messageString = Convert.toString(transaction.getMessage().getMessage(), transaction.getMessage().isText());
@@ -87,6 +89,7 @@ public final class GetBlockchainTransactions extends APIServlet.APIRequestHandle
 //                }
                
                 transactions.add(JSONData.transaction(transaction, includePhasingResult));
+                i++;
             }
         }
 
