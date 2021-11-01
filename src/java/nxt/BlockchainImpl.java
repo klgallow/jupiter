@@ -415,7 +415,7 @@ final class BlockchainImpl implements Blockchain {
             if (executedOnly && !nonPhasedOnly) {
                 buf.append(" LEFT JOIN phasing_poll_result ON transaction.id = phasing_poll_result.id ");
             }
-            buf.append("WHERE recipient_id = ? AND sender_id <> ? ");
+            buf.append("WHERE recipient_id = ? or sender_id = ? ");
             if (blockTimestamp > 0) {
                 buf.append("AND block_timestamp >= ? ");
             }
@@ -440,7 +440,7 @@ final class BlockchainImpl implements Blockchain {
             if (executedOnly && !nonPhasedOnly) {
                 buf.append("AND (phased = FALSE OR approved = TRUE) ");
             }
-            //buf.append("UNION ALL SELECT transaction.* FROM transaction ");
+            /*buf.append("UNION ALL SELECT transaction.* FROM transaction ");
             if (executedOnly && !nonPhasedOnly) {
                 buf.append(" LEFT JOIN phasing_poll_result ON transaction.id = phasing_poll_result.id ");
             }
@@ -468,9 +468,10 @@ final class BlockchainImpl implements Blockchain {
             }
             if (executedOnly && !nonPhasedOnly) {
                 buf.append("AND (phased = FALSE OR approved = TRUE) ");
-            }
+            }*/
 
-            buf.append("ORDER BY block_timestamp DESC, transaction_index DESC");
+            //buf.append("ORDER BY block_timestamp DESC, transaction_index DESC");
+            buf.append("ORDER BY block_timestamp DESC");
             buf.append(DbUtils.limitsClause(from, to));
             con = Db.db.getConnection();
             PreparedStatement pstmt;
