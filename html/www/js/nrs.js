@@ -1224,17 +1224,17 @@ NRS.addPagination = function () {
                         $("#account_nr_currencies").html(0);
                     }
 
-                    /* Display message count in top and limit to 100 for now because of possible performance issues*/
+                    /* Display message count in top and limit to 20 for now because of possible performance issues*/
                     NRS.sendRequest("getBlockchainTransactions+", {
                         "account": NRS.account,
                         "type": 1,
                         "subtype": 0,
                         "firstIndex": 0,
-                        "lastIndex": 99
+                        "lastIndex": 20
                     }, function (response) {
                         if (response.transactions && response.transactions.length) {
-                            if (response.transactions.length > 99)
-                                $("#account_message_count").empty().append("99+");
+                            if (response.transactions.length > 20)
+                                $("#account_message_count").empty().append("20+");
                             else
                                 $("#account_message_count").empty().append(response.transactions.length);
                         } else {
