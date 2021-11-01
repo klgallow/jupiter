@@ -498,7 +498,7 @@ final class BlockchainImpl implements Blockchain {
             if (withMessage) {
                 pstmt.setInt(++i, prunableExpiration);
             }
-            pstmt.setLong(++i, accountId);
+            /*pstmt.setLong(++i, accountId);
             if (blockTimestamp > 0) {
                 pstmt.setInt(++i, blockTimestamp);
             }
@@ -513,7 +513,7 @@ final class BlockchainImpl implements Blockchain {
             }
             if (withMessage) {
                 pstmt.setInt(++i, prunableExpiration);
-            }
+            }*/
             DbUtils.setLimits(++i, pstmt, from, to);
             return getTransactions(con, pstmt);
         } catch (SQLException e) {
