@@ -440,7 +440,7 @@ final class BlockchainImpl implements Blockchain {
             if (executedOnly && !nonPhasedOnly) {
                 buf.append("AND (phased = FALSE OR approved = TRUE) ");
             }
-            buf.append("UNION ALL SELECT transaction.* FROM transaction ");
+            //buf.append("UNION ALL SELECT transaction.* FROM transaction ");
             if (executedOnly && !nonPhasedOnly) {
                 buf.append(" LEFT JOIN phasing_poll_result ON transaction.id = phasing_poll_result.id ");
             }
@@ -514,7 +514,6 @@ final class BlockchainImpl implements Blockchain {
                 pstmt.setInt(++i, prunableExpiration);
             }
             DbUtils.setLimits(++i, pstmt, from, to);
-            Logger.logDebugMessage("PreparedStatement = " +pstmt.toString());
             return getTransactions(con, pstmt);
         } catch (SQLException e) {
             DbUtils.close(con);

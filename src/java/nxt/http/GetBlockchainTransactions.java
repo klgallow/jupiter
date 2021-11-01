@@ -81,12 +81,12 @@ public final class GetBlockchainTransactions extends APIServlet.APIRequestHandle
             while (iterator.hasNext()) {
             	Logger.logDebugMessage("Processing tx " + i);
                 Transaction transaction = iterator.next();
-//                if (withMessage && transaction.getMessage() != null  && messageToFilter != null && !messageToFilter.isEmpty()) {
-//                	String messageString = Convert.toString(transaction.getMessage().getMessage(), transaction.getMessage().isText());
-//                	if (!messageString.contains(messageToFilter)) {
-//                		break;
-//                	}
-//                }
+                if (withMessage && transaction.getMessage() != null  && messageToFilter != null && !messageToFilter.isEmpty()) {
+                	String messageString = Convert.toString(transaction.getMessage().getMessage(), transaction.getMessage().isText());
+                	if (!messageString.contains(messageToFilter)) {
+                		break;
+                	}
+                }
                
                 transactions.add(JSONData.transaction(transaction, includePhasingResult));
                 i++;
