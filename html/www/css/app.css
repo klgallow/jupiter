@@ -3901,5 +3901,7 @@ body > .header .navbar {
 
 .footer {
   display: block;
-  width: auto;
+  width: 100%;
+  bottom: 0px;
+  position: fixed;
 }
