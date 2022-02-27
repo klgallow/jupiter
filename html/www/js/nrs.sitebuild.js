@@ -41,6 +41,12 @@ var NRS = (function(NRS, $) {
     	jQuery.ajaxSetup({ async: true });
     };
 
+    NRS.loadFooterHTML = function(path) {
+        jQuery.ajaxSetup({ async: false });
+        $.get(path, '', function (data) { $("body").append(data); });
+        jQuery.ajaxSetup({ async: true });
+    };
+
     NRS.loadSidebarHTML = function(path) {
     	jQuery.ajaxSetup({ async: false });
     	$.get(path, '', function (data) { $("#sidebar").append(data); });
@@ -69,12 +75,6 @@ var NRS = (function(NRS, $) {
     	jQuery.ajaxSetup({ async: true });
     };
     
-    NRS.loadFooterHTML = function(path) {
-        jQuery.ajaxSetup({ async: false });
-        $.get(path, '', function (data) { $("body").append(data); });
-        jQuery.ajaxSetup({ async: true });
-    };
-
     NRS.loadPageHTMLTemplates = function(options) {
         //Not used stub, for future use
     };
