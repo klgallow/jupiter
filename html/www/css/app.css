@@ -2355,7 +2355,7 @@ body {
 	 display: none;
 }
 
-.lockscreen header, .lockscreen #page {
+.lockscreen header, .lockscreen #page, .lockscreen footer {
 	display: none !important;
 }
 

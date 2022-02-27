@@ -68,6 +68,12 @@ var NRS = (function(NRS, $) {
     	$.get(path, '', function (data) { $("body").append(data); });
     	jQuery.ajaxSetup({ async: true });
     };
+    
+    NRS.loadFooterHTML = function(path) {
+        jQuery.ajaxSetup({ async: false });
+        $.get(path, '', function (data) { $("body").append(data); });
+        jQuery.ajaxSetup({ async: true });
+    };
 
     NRS.loadPageHTMLTemplates = function(options) {
         //Not used stub, for future use
