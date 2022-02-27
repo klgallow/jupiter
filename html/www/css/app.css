@@ -3895,3 +3895,11 @@ body > .header .navbar {
 }
 
 /* @media min-height: 400px */
+
+
+/*  Footer  */
+
+.footer {
+  display: block;
+  width: auto;
+}
