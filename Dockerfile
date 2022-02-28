@@ -29,6 +29,6 @@ RUN bash ./compile.sh
 RUN chmod +x run.sh
 
 # both Jupiter ports get exposed
-EXPOSE 7864 7876
+EXPOSE 6864 6876
 
 CMD ./run.sh
