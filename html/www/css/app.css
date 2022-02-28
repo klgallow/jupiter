@@ -2948,6 +2948,7 @@ a.list-group-item-header:hover {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	display:none;
+	z-index: 1;
 }
 
 #show_console {
@@ -3165,6 +3166,7 @@ hr {
     color: white;
     text-align: center;
     cursor: pointer;
+    z-index: 1;
 }
 
 #login_error  {
